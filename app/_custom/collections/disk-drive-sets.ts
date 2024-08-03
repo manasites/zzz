@@ -1,13 +1,21 @@
 import type { CollectionConfig } from "payload/types";
 
 import { isStaff } from "../../db/collections/users/users.access";
+import {
+   afterChangeSearchSyncHook,
+   afterDeleteSearchSyncHook,
+} from "../hooks/search-hooks";
 
 export const DiskDriveSets: CollectionConfig = {
    slug: "disk-drive-sets",
-   labels: { singular: "disk-drive-set", plural: "disk-drive-sets" },
+   labels: { singular: "Disk Drive Set", plural: "Disk Drive Set" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
+   },
+   hooks: {
+      afterDelete: [afterDeleteSearchSyncHook],
+      afterChange: [afterChangeSearchSyncHook],
    },
    access: {
       create: isStaff,
@@ -67,7 +75,7 @@ export const DiskDriveSets: CollectionConfig = {
             },
             {
                name: "desc",
-               type: "textarea"
+               type: "textarea",
             },
             {
                name: "partition",
@@ -85,7 +93,7 @@ export const DiskDriveSets: CollectionConfig = {
                type: "relationship",
                relationTo: "disk-drive-pools",
                hasMany: true,
-            }
+            },
          ],
       },
       {

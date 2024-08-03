@@ -1,13 +1,21 @@
 import type { CollectionConfig } from "payload/types";
 
 import { isStaff } from "../../db/collections/users/users.access";
+import {
+   afterDeleteSearchSyncHook,
+   afterChangeSearchSyncHook,
+} from "../hooks/search-hooks";
 
 export const WEngines: CollectionConfig = {
    slug: "w-engines",
-   labels: { singular: "w-engine", plural: "w-engines" },
+   labels: { singular: "W-engine", plural: "W-engines" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
+   },
+   hooks: {
+      afterDelete: [afterDeleteSearchSyncHook],
+      afterChange: [afterChangeSearchSyncHook],
    },
    access: {
       create: isStaff,
@@ -88,7 +96,7 @@ export const WEngines: CollectionConfig = {
             {
                name: "value",
                type: "text",
-            }
+            },
          ],
       },
       {

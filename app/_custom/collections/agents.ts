@@ -1,13 +1,21 @@
 import type { CollectionConfig } from "payload/types";
 
 import { isStaff } from "../../db/collections/users/users.access";
+import {
+   afterChangeSearchSyncHook,
+   afterDeleteSearchSyncHook,
+} from "../hooks/search-hooks";
 
 export const Agents: CollectionConfig = {
    slug: "agents",
-   labels: { singular: "agent", plural: "agents" },
+   labels: { singular: "Agent", plural: "Agents" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
+   },
+   hooks: {
+      afterDelete: [afterDeleteSearchSyncHook],
+      afterChange: [afterChangeSearchSyncHook],
    },
    access: {
       create: isStaff,
@@ -98,7 +106,7 @@ export const Agents: CollectionConfig = {
             {
                name: "growth",
                type: "number",
-            }
+            },
          ],
       },
       {
