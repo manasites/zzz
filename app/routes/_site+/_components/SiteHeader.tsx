@@ -8,7 +8,6 @@ import {
    Transition,
 } from "@headlessui/react";
 import { Link, useFetcher, useLoaderData } from "@remix-run/react";
-import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { InstantSearch } from "react-instantsearch";
 
@@ -24,6 +23,7 @@ import type { loader as siteLoaderType } from "~/routes/_site+/_layout";
 import { isAdding } from "~/utils/form";
 
 import { MenuTrayContent, MobileTray } from "./MobileTray";
+import { DarkModeToggle } from "../action+/theme-toggle";
 import { searchClient } from "../search/_search";
 import { Autocomplete } from "../search/components/Autocomplete";
 
@@ -43,8 +43,8 @@ export function SiteHeader({
 
    return (
       <section
-         className="z-30 w-full laptop:z-50 fixed max-laptop:top-[56px] shadow-sm dark:shadow-zinc-900/30
-        laptop:sticky laptop:top-0 dark:bg-dark350 bg-white border-color border-b border-zinc-200/50"
+         className="z-30 w-full laptop:z-50 max-laptop:top-0 shadow-sm dark:shadow-zinc-900/30
+        sticky top-0 dark:bg-dark350 bg-white border-color border-b border-zinc-200/50"
       >
          <div
             className="pattern-dots absolute left-0
@@ -53,11 +53,7 @@ export function SiteHeader({
             pattern-size-1 dark:pattern-zinc-500 dark:pattern-bg-bg3Dark"
          />
          <div className="relative mx-auto w-full laptop:max-w-[732px] laptop:rounded-b-2xl">
-            <div
-               className={clsx(
-                  "h-[60px] relative mx-auto flex items-center justify-between",
-               )}
-            >
+            <div className="h-[60px] relative mx-auto flex items-center justify-between">
                <>
                   <div className="flex items-center truncate max-laptop:pl-3">
                      <Link
@@ -201,7 +197,6 @@ export function SiteHeader({
                         <div className="flex items-center">
                            <Link
                               // prefetch="intent"
-                              reloadDocument={true}
                               to={`/login?redirectTo=/`}
                               className="flex h-9 items-center justify-center rounded-full bg-zinc-700 px-3.5
                         text-sm font-bold text-white dark:bg-white dark:text-black max-laptop:hidden"
@@ -233,6 +228,9 @@ export function SiteHeader({
                            </button>
                         </div>
                      </NotFollowingSite>
+                     <div className="laptop:!hidden">
+                        <DarkModeToggle className="size-5" />
+                     </div>
                      <div className="flex items-center justify-center gap-2 hover:border-zinc-400 shadow-sm bg-zinc-100 dark:bg-dark500 border border-zinc-300 dark:border-zinc-500 dark:hover:border-zinc-400 rounded-full size-10">
                         <InstantSearch searchClient={searchClient}>
                            <Autocomplete site={site} />

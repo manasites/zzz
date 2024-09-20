@@ -1,5 +1,6 @@
 import type { SerializeFrom } from "@remix-run/node";
 import { Link } from "@remix-run/react";
+import clsx from "clsx";
 
 import { Icon } from "~/components/Icon";
 import type { Collection } from "~/db/payload-types";
@@ -53,47 +54,79 @@ export function TableOfContents({
                         <span>Table of Contents</span>
                      </div>
                   </div>
-                  <div className="py-1.5">
+                  <div className="py-3.5 space-y-2.5">
                      {sectionsList?.map((section) => (
                         <div key={section.id}>
-                           <div className="py-2 group flex items-center relative -ml-1.5 hover:underline dark:decoration-zinc-500 decoration-zinc-300">
+                           <div className="group flex items-center relative -ml-1.5 hover:underline dark:decoration-zinc-500 decoration-zinc-300">
                               <div
-                                 className="w-3 h-3 border group-hover:bg-zinc-200 dark:border-zinc-600 border-zinc-300 dark:group-hover:border-zinc-500
-                               bg-zinc-100 dark:bg-dark500 rounded-full dark:shadow-zinc-800 dark:group-hover:bg-dark500"
+                                 className="size-3 border group-hover:bg-zinc-200 dark:border-zinc-600 border-zinc-300 dark:group-hover:border-zinc-500
+                               bg-zinc-100 dark:bg-dark450 rounded-full dark:shadow-zinc-800 dark:group-hover:bg-dark500"
                               />
                               <div className="w-3 h-[1px] dark:bg-zinc-700 bg-zinc-200" />
                               <Link
                                  to={`#${section?.slug}`}
-                                 className="font-bold pl-2 flex items-center w-full gap-3"
+                                 className={clsx(
+                                    section?.subSections &&
+                                       section?.subSections?.length > 1
+                                       ? "rounded-t-lg border-b-0"
+                                       : "rounded-lg shadow-sm shadow-zinc-100 dark:shadow-zinc-800/40",
+                                    "font-bold pl-2 pr-2.5 mr-3 py-1.5 flex items-center w-full gap-1.5  dark:hover:bg-dark450 border border-color-sub bg-white dark:bg-dark400  hover:bg-zinc-100 ",
+                                 )}
                               >
-                                 <span>{section.name}</span>
-                                 <div className="border-t border-dashed border-zinc-200 dark:border-zinc-700 flex-grow" />
+                                 <Icon
+                                    name="hash"
+                                    size={12}
+                                    className="dark:text-zinc-500 text-zinc-400"
+                                 />
+                                 <span className="pr-1">{section.name}</span>
+                                 <div className="border-t border-dotted border-zinc-300/80 dark:border-zinc-600 flex-grow" />
+                                 <Icon
+                                    name="chevron-down"
+                                    size={14}
+                                    className="dark:text-zinc-500 text-zinc-400"
+                                 />
                               </Link>
                            </div>
                            {section.subSections &&
-                           section.subSections?.length === 1
-                              ? null
-                              : section.subSections?.map((subSection) => (
-                                   <div
-                                      key={subSection.id}
-                                      className="group flex w-full items-center relative hover:underline dark:decoration-zinc-500 decoration-zinc-300"
-                                   >
-                                      <div
-                                         className="w-[4px] h-4 group-hover:bg-zinc-300 -ml-[1px]
-                                 bg-zinc-200 dark:bg-dark450 rounded-r-sm dark:group-hover:bg-dark500"
-                                      />
-                                      <Link
-                                         to={
-                                            section.viewType == "rows"
-                                               ? `#${subSection?.slug}`
-                                               : `?section=${subSection?.slug}#${section?.slug}`
-                                         }
-                                         className="font-semibold text-sm rounded-lg pl-2.5 mx-3 dark:hover:bg-dark400 hover:bg-zinc-100 text-1 w-full py-1 block"
-                                      >
-                                         {subSection.name}
-                                      </Link>
-                                   </div>
-                                ))}
+                           (section.subSections?.length === 1 ||
+                              section.subSections?.length === 0) ? null : (
+                              <div
+                                 className={clsx(
+                                    section?.subSections &&
+                                       section?.subSections?.length > 1
+                                       ? "rounded-b-lg"
+                                       : "rounded-lg",
+                                    "border border-color-sub overflow-hidden divide-y divide-color-sub mr-3 ml-[16.5px] tablet:ml-[17px] bg-3-sub shadow-sm shadow-zinc-100 dark:shadow-zinc-800/50",
+                                 )}
+                              >
+                                 {section.subSections?.map((subSection) => (
+                                    <Link
+                                       key={subSection.id}
+                                       className="group flex w-full items-center justify-between relative dark:hover:bg-dark450 hover:bg-zinc-50 dark:decoration-zinc-500 decoration-zinc-300 px-2.5 py-2 text-xs font-bold"
+                                       to={
+                                          section.viewType == "rows"
+                                             ? `#${subSection?.slug}`
+                                             : `?section=${subSection?.slug}#${section?.slug}`
+                                       }
+                                    >
+                                       <div className="flex items-center gap-2">
+                                          <Icon
+                                             name="corner-down-right"
+                                             size={14}
+                                             className="dark:text-zinc-500 text-zinc-400"
+                                          />
+                                          {/* <span className="dark:bg-zinc-600 bg-zinc-300 size-1.5 rounded-full" /> */}
+                                          <span>{subSection.name}</span>
+                                       </div>
+                                       <Icon
+                                          name="chevron-down"
+                                          size={14}
+                                          className="dark:text-zinc-500 text-zinc-400"
+                                       />
+                                    </Link>
+                                 ))}
+                              </div>
+                           )}
                         </div>
                      ))}
                   </div>
