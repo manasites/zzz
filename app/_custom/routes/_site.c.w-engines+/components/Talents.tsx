@@ -39,9 +39,26 @@ export function Talents({ data: char }: { data: WEngineType }) {
    const talent_name = char.talent_title;
    const talent_desc = talents[talentLevel]?.desc;
 
+   const span_format =
+      "<style>div.skill-desc > span { text-shadow: 1px 1px 1px black; }</style>";
+
    return (
       <>
-         <H2 text="Talent" />
+         <H2>Talent</H2>
+         <div dangerouslySetInnerHTML={{ __html: span_format }}></div>
+
+         <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-1 flex my-3 justify-between">
+            <div className="flex">
+               <div className="inline-block mr-2 col-span-11 self-center">
+                  {/* Header */}
+                  <div className="">
+                     <div className="font-bold inline-block mr-2 text-2xl">
+                        {talent_name}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
          {/* Slider */}
          {talents?.length > 0 ? (
             <>
@@ -63,24 +80,11 @@ export function Talents({ data: char }: { data: WEngineType }) {
             </>
          ) : null}
 
-         <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-1 flex my-3 justify-between">
-            <div className="flex">
-               <div className="inline-block mr-2 col-span-11 self-center">
-                  {/* Header */}
-                  <div className="">
-                     <div className="font-bold inline-block mr-2 text-2xl">
-                        {talent_name}
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-
          {/* Description */}
 
          <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-2  mt-2">
             <div
-               className="dark:brightness-100 brightness-7"
+               className="dark:brightness-100 brightness-7 skill-desc"
                dangerouslySetInnerHTML={{ __html: talent_desc }}
             ></div>
          </div>

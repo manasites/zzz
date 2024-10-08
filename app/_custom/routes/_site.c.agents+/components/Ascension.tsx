@@ -40,7 +40,7 @@ export function Ascension({ data: char }: { data: any }) {
 
          <H2>Ascension Materials</H2>
 
-         <Table grid framed>
+         <Table grid framed dense>
             <TableHead>
                <TableRow className="text-sm">
                   <TableHeader center>Asc</TableHeader>

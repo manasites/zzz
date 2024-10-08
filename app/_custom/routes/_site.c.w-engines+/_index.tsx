@@ -44,12 +44,14 @@ type FilterTypes = {
    id: string;
    name: string;
    field: string;
+   subfield?: string;
 };
 
 type FilterOptionType = {
    name: string;
    id: string;
    icon?: string;
+   subfield?: string;
 };
 
 const CharacterList = ({ chars }: any) => {
@@ -81,45 +83,68 @@ const CharacterList = ({ chars }: any) => {
          icon: "https://static.mana.wiki/zzz/ItemRarityIcon_ItemRarityS.png",
       },
    ] as FilterOptionType[];
-   const statsecondary = chars
-      .map((c: any) => c.stat_secondary?.stat?.name)
-      .flat();
+   const statsecondary = chars.map((c: any) => {
+      return {
+         id: c.stat_secondary?.stat?.id,
+         name: c.stat_secondary?.stat?.name,
+         icon: c.stat_secondary?.stat?.icon?.url,
+      };
+   });
+
    const secondarystats = [
       {
-         id: "HP",
+         id: "11102",
          name: "HP",
+         icon: statsecondary.find((a) => a.id == "11102")?.icon,
+         subfield: "stat",
       },
       {
-         id: "ATK",
+         id: "12102",
          name: "ATK",
+         icon: statsecondary.find((a) => a.id == "12102")?.icon,
+         subfield: "stat",
       },
       {
-         id: "DEF",
+         id: "13102",
          name: "DEF",
+         icon: statsecondary.find((a) => a.id == "13102")?.icon,
+         subfield: "stat",
       },
       {
-         id: "Crit DMG",
-         name: "Crit DMG",
+         id: "21103",
+         name: "CRIT DMG",
+         icon: statsecondary.find((a) => a.id == "21103")?.icon,
+         subfield: "stat",
       },
       {
-         id: "CRIT Rate",
+         id: "20103",
          name: "CRIT Rate",
+         icon: statsecondary.find((a) => a.id == "20103")?.icon,
+         subfield: "stat",
       },
       {
-         id: "PEN Ratio",
+         id: "23103",
          name: "PEN Ratio",
+         icon: statsecondary.find((a) => a.id == "23103")?.icon,
+         subfield: "stat",
       },
       {
-         id: "Impact",
+         id: "12202",
          name: "Impact",
+         icon: statsecondary.find((a) => a.id == "12202")?.icon,
+         subfield: "stat",
       },
       {
-         id: "Attribute Mastery",
-         name: "Attribute Mastery",
+         id: "30502",
+         name: "Energy Regen",
+         icon: statsecondary.find((a) => a.id == "30502")?.icon,
+         subfield: "stat",
       },
       {
-         id: "Anomaly Rate Bonus",
-         name: "Anomaly Rate Bonus",
+         id: "31203",
+         name: "Anomaly Proficiency",
+         icon: statsecondary.find((a) => a.id == "31203")?.icon,
+         subfield: "stat",
       },
    ] as FilterOptionType[];
 
@@ -151,6 +176,7 @@ const CharacterList = ({ chars }: any) => {
 
    // Filter entries
    // Filter out by each active filter option selected, if matches filter then output 0; if sum of all filters is 0 then show entry.
+
    let cfiltered = csorted.filter((char) => {
       var showEntry = filters
          .map((filt) => {
@@ -162,6 +188,10 @@ const CharacterList = ({ chars }: any) => {
                   char[filt.field]?.map((v: any) => v.id)?.indexOf(filt.id) > -1
                      ? 0
                      : 1;
+            } else if (char[filt.field]?.[filt.subfield]?.id) {
+               matches =
+                  char[filt.field]?.[filt.subfield]?.id == filt.id ? 0 : 1;
+               console.log(filt.subfield);
             } else {
                matches = char[filt.field] == filt.id ? 0 : 1;
             }
@@ -372,18 +402,18 @@ const CharacterList = ({ chars }: any) => {
                         <div className="w-full">
                            <div className="my-1 grid grid-cols-2 gap-1 w-full">
                               <div className="inline-flex justify-between rounded-full bg-black px-3 py-1">
-                                 <div className="text-white text-sm font-bold">
+                                 <div className="text-white text-xs font-bold">
                                     {mainname}
                                  </div>
-                                 <div className="text-white text-sm">
+                                 <div className="text-white text-xs">
                                     {mainval}
                                  </div>
                               </div>
                               <div className="inline-flex justify-between rounded-full bg-black px-3 py-1">
-                                 <div className="text-white text-sm font-bold">
+                                 <div className="text-white text-xs font-bold">
                                     {secondname}
                                  </div>
-                                 <div className="text-white text-sm">
+                                 <div className="text-white text-xs">
                                     {secondval}
                                  </div>
                               </div>
@@ -395,7 +425,7 @@ const CharacterList = ({ chars }: any) => {
                               {talentname}
                            </div>
                            <div
-                              className="dark:brightness-100 brightness-7 text-xs"
+                              className="dark:brightness-100 brightness-7 text-xs bg-black rounded-md px-3 py-1 text-gray-300"
                               dangerouslySetInnerHTML={{ __html: talentfirst }}
                            ></div>
                         </div>
@@ -459,6 +489,9 @@ const CHARACTERS = gql`
                   name
                   fmt
                   divisor
+                  icon {
+                     url
+                  }
                }
                value
             }

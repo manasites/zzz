@@ -20,7 +20,7 @@ export function ImageGallery({ data: char }: { data: WEngineType }) {
 
    return (
       <>
-         <H2 text="Image Gallery" />
+         <H2>Image Gallery</H2>
          <div className="mb-3 grid w-full grid-cols-3 gap-3">
             {gallery_items.map((g, i) => {
                return (

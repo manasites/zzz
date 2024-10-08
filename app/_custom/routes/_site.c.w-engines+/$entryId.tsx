@@ -26,7 +26,7 @@ export async function loader({
    params,
    request,
 }: LoaderFunctionArgs) {
-   const fetchWEngineData = fetchEntry({
+   const { entry } = await fetchEntry({
       payload,
       params,
       request,
@@ -35,24 +35,10 @@ export async function loader({
          query: QUERY,
       },
    });
-   const fetchWLevelData = fetchList({
-      payload,
-      params,
-      request,
-      user,
-      gql: {
-         query: WLEVEL_QUERY,
-      },
-   });
-
-   const [{ entry }, wlevel] = await Promise.all([
-      fetchWEngineData,
-      fetchWLevelData,
-   ]);
 
    return json({
       entry,
-      wLevelData: wlevel?.list?.data?.DataJsons?.docs,
+      wLevelData: entry?.data?.DataJsons?.docs,
    });
 }
 
@@ -130,11 +116,6 @@ const QUERY = gql`
             desc
          }
       }
-   }
-`;
-
-const WLEVEL_QUERY = gql`
-   query {
       DataJsons {
          docs {
             id

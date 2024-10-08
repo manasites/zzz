@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Input } from "~/components/Input";
 
-import { calculateEngineMainstat, calculateEngineSubstat } from "~/_custom/utils/formulas";
+import {
+   calculateEngineMainstat,
+   calculateEngineSubstat,
+} from "~/_custom/utils/formulas";
 
 import type { WEngine as WEngineType } from "payload/generated-custom-types";
 import { Image } from "~/components/Image";
@@ -50,8 +53,6 @@ export function Main({ data }: { data: WEngineType }) {
       (w: any) => w.rarity == char?.rarity?.id,
    )?.[asc_index]?.second_stat_mod;
 
-   console.log(secondary_growth);
-
    const basicStatDisplay = [
       {
          label: char?.stat_primary?.stat?.name?.replace("Base ", ""),
@@ -61,7 +62,7 @@ export function Main({ data }: { data: WEngineType }) {
                char?.stat_primary?.value,
                level_growth,
                star_growth,
-            )
+            ),
          ),
          // they look ugly lol
          //icon: char?.stat_primary?.stat?.icon?.url,
@@ -73,7 +74,7 @@ export function Main({ data }: { data: WEngineType }) {
             calculateEngineSubstat(
                char?.stat_secondary?.value,
                secondary_growth,
-            ) / char?.stat_secondary?.stat?.divisor
+            ) / char?.stat_secondary?.stat?.divisor,
          ),
          //icon: char?.stat_secondary?.stat?.icon?.url,
       },
@@ -268,12 +269,9 @@ const StatBlock = ({ attr }: any) => {
                </span>
             </div>
             <div className="text-sm font-semibold">
-               <span className="inline-block align-middle">
-                  {attr_val}
-               </span>
+               <span className="inline-block align-middle">{attr_val}</span>
             </div>
          </div>
       </>
    );
 };
-

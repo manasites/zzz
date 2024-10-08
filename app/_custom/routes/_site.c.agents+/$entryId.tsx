@@ -47,6 +47,7 @@ const SECTIONS = {
    skills: Skills,
    core: Core,
    talents: Talents,
+   ascension: Ascension,
    gallery: ImageGallery,
 };
 
