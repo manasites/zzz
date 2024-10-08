@@ -4,20 +4,16 @@ import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { gql } from "graphql-request";
 
-import { Effects } from "~/_custom/components/disk-drive-sets/Effects";
-import { Main } from "~/_custom/components/disk-drive-sets/Main";
-import type { DiskDriveSet as DiskDriveSetType } from "~/db/payload-custom-types";
+// Custom Site / Collection Config Imports
+import { Main } from "./components/Main";
+import type { Material as MaterialType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
-import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
 import { fetchEntry } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/fetchEntry.server";
 
-import { DiskDriveSets } from "../../../collections/disk-drive-sets";
-
-// Custom Site / Collection Config Imports
+import { Materials } from "../../collections/materials";
 
 // Custom Component Imports
-
-export { entryMeta as meta };
+//import { ImageGallery } from "~/_custom/components/materials/ImageGallery";
 
 // Loader definition - loads Entry data!
 export async function loader({
@@ -41,72 +37,44 @@ export async function loader({
 
 const SECTIONS = {
    main: Main,
-   effects: Effects,
+   // gallery: ImageGallery,
 };
 
 export default function EntryPage() {
    const { entry } = useLoaderData<typeof loader>();
-   const char = entry?.data?.DiskDriveSet as DiskDriveSetType;
+   const char = entry?.data?.Material as MaterialType;
 
    return (
       <>
          {/* <Entry customComponents={SECTIONS} customData={char} /> */}
          <Entry>
             <Main data={char} />
-            <Effects data={char} />
+            {/* <ImageGallery data={char} /> */}
          </Entry>
       </>
    );
 }
 
 const QUERY = gql`
-query DiskDriveSet($entryId: String!) {
-  DiskDriveSet(id: $entryId) {
-    id
-    slug
-    name
-    desc
-    icon {
-      url
-    }
-    rarity_possible {
-      id
-      name
-      icon_item {
-        url
-      }
-    }
-    set_effect {
-      num
-      desc
-    }
-    partitions {
-      partition {
-        name
-      }
-      main_stat_pool {
-        stats {
-          stat {
+   query Material($entryId: String!) {
+      Material(id: $entryId) {
+         id
+         name
+         desc
+         desc_flavor
+         slug
+         rarity {
             name
             icon {
-              url
+               url
             }
-          }
-          value
-        }
-      }
-      sub_stat_pool {
-        stats {
-          stat {
+         }
+         class {
             name
-            icon {
-              url
-            }
-          }
-          value
-        }
+         }
+         icon {
+            url
+         }
       }
-    }
-  }
-}
+   }
 `;

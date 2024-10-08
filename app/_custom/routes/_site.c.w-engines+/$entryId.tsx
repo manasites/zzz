@@ -4,15 +4,15 @@ import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { gql } from "graphql-request";
 
-import { ImageGallery } from "~/_custom/components/w-engines/ImageGallery";
-import { Main } from "~/_custom/components/w-engines/Main";
-import { Talents } from "~/_custom/components/w-engines/Talents";
+import { ImageGallery } from "./components/ImageGallery";
+import { Main } from "./components/Main";
+import { Talents } from "./components/Talents";
 import type { WEngine as WEngineType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
 import { fetchEntry } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/fetchEntry.server";
 
-import { WEngines } from "../../../collections/w-engines";
+import { WEngines } from "../../collections/w-engines";
 import { fetchList } from "~/routes/_site+/c_+/$collectionId/utils/fetchList.server";
 
 // Custom Site / Collection Config Imports
@@ -79,67 +79,67 @@ export default function EntryPage() {
 }
 
 const QUERY = gql`
-query WEngine($entryId: String!) {
-  WEngine(id: $entryId) {
-    id
-    slug
-    name
-    desc
-    comment
-    icon {
-      url
-    }
-    icon_full {
-      url
-    }
-    icon_big {
-      url
-    }
-    rarity {
-      id
-      name
-      icon_item {
-        url
+   query WEngine($entryId: String!) {
+      WEngine(id: $entryId) {
+         id
+         slug
+         name
+         desc
+         comment
+         icon {
+            url
+         }
+         icon_full {
+            url
+         }
+         icon_big {
+            url
+         }
+         rarity {
+            id
+            name
+            icon_item {
+               url
+            }
+         }
+         specialty {
+            name
+            icon {
+               url
+            }
+         }
+         stat_primary {
+            stat {
+               id
+               name
+            }
+            value
+         }
+         stat_secondary {
+            stat {
+               id
+               name
+               fmt
+               divisor
+            }
+            value
+         }
+         talent_title
+         talent {
+            level
+            desc
+         }
       }
-    }
-    specialty {
-      name
-      icon {
-        url
-      }
-    }
-    stat_primary {
-      stat {
-        id
-        name
-      }
-      value
-    }
-    stat_secondary {
-      stat {
-        id
-        name
-        fmt
-        divisor
-      }
-      value
-    }
-    talent_title
-    talent {
-      level
-      desc
-    }
-  }
-}
+   }
 `;
 
 const WLEVEL_QUERY = gql`
-query {
-  DataJsons {
-    docs {
-      id
-      json
-    }
-  }
-}
+   query {
+      DataJsons {
+         docs {
+            id
+            json
+         }
+      }
+   }
 `;
