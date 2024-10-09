@@ -15,6 +15,7 @@ import { Talents } from "./components/Talents";
 import { Ascension } from "./components/Ascension";
 import { SkillMaterials } from "./components/SkillMaterials";
 import { Totals } from "./components/Totals";
+import { Profile } from "./components/Profile";
 import type { Agent as AgentType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
@@ -52,6 +53,7 @@ const SECTIONS = {
    ascension: Ascension,
    skillmats: SkillMaterials,
    totals: Totals,
+   profile: Profile,
    gallery: ImageGallery,
 };
 
@@ -71,6 +73,7 @@ export default function EntryPage() {
             <Ascension data={char} />
             <SkillMaterials data={char} />
             <Totals data={char} />
+            <Profile data={char} />
             <ImageGallery data={char} />
          </Entry>
       </>
