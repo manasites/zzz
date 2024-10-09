@@ -3,6 +3,14 @@ import { useState } from "react";
 import type { Agent as AgentType } from "payload/generated-custom-types";
 import { H2 } from "~/components/Headers";
 import { Image } from "~/components/Image";
+import {
+   Table,
+   TableBody,
+   TableCell,
+   TableHead,
+   TableHeader,
+   TableRow,
+} from "~/components/Table";
 
 export function Skills({ data: char }: { data: AgentType }) {
    const desc_icons = [
@@ -49,7 +57,7 @@ export function Skills({ data: char }: { data: AgentType }) {
    });
 
    // Some general CSS stuff
-   const skill_desc_header = "font-bold text-lg my-1";
+   const skill_desc_header = "font-bold text-base my-1";
    const toggle_desc_button =
       "text-gray-900 hover:text-white border-2 border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-sm font-bold px-3 py-1 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 cursor-pointer";
    const toggle_stats_button =
@@ -70,6 +78,7 @@ export function Skills({ data: char }: { data: AgentType }) {
 
             const desc_list = sk.skill?.description;
             const stat_list = sk.skill?.modifiers;
+            const mat_list = sk.skill?.materials;
             return (
                <>
                   <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-1 flex my-3 justify-between">
@@ -130,6 +139,7 @@ export function Skills({ data: char }: { data: AgentType }) {
                            ></input>
                         </div>
                         <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-1  mt-2 p-1">
+                           {/* Stat List */}
                            {stat_list?.map((stat: any, i: any) => {
                               // skillLevel should start at 0
                               return (
@@ -137,7 +147,7 @@ export function Skills({ data: char }: { data: AgentType }) {
                                     {stat.params?.length !== undefined ? (
                                        // Has parameters!
                                        <>
-                                          <div className="bg-zinc-200 dark:bg-dark450 rounded-full w-full px-3 py-1 flex justify-between my-1">
+                                          <div className="bg-zinc-200 dark:bg-dark450 rounded-full w-full px-3 py-1 flex justify-between my-1 text-sm">
                                              <div>{stat.title}</div>
                                              <div>
                                                 {stat.params[skillLevel]}
@@ -159,6 +169,34 @@ export function Skills({ data: char }: { data: AgentType }) {
                                  </>
                               );
                            })}
+                           {/* Materials */}
+                           {mat_list?.[skillLevel]?.materials?.length > 0 ? (
+                              <Table grid framed dense>
+                                 <TableHead>
+                                    <TableRow className="text-sm">
+                                       <TableHeader center>
+                                          Materials
+                                       </TableHeader>
+                                    </TableRow>
+                                 </TableHead>
+                                 <TableBody>
+                                    {/* @ts-ignore */}
+
+                                    <TableRow>
+                                       <TableCell center>
+                                          {mat_list?.[
+                                             skillLevel
+                                          ]?.materials?.map((mat, key) => (
+                                             <ItemQtyFrame
+                                                mat={mat}
+                                                key={key}
+                                             />
+                                          ))}
+                                       </TableCell>
+                                    </TableRow>
+                                 </TableBody>
+                              </Table>
+                           ) : null}
                         </div>
                      </>
                   ) : (
@@ -209,21 +247,51 @@ export function Skills({ data: char }: { data: AgentType }) {
    );
 }
 
-{
-   /* Slider */
-}
+// ====================================
+// 0a) GENERIC: Item Icon and Quantity Frame
+// ------------------------------------
+// * PROPS (Arguments) accepted:
+// - item: An object from the material_qty structure, with an id, item{}, and qty field.
+// ====================================
+type ItemQtyFrameProps = {
+   material?: any;
+   qty?: number;
+   id?: string;
+};
+const ItemQtyFrame = ({ mat }: { mat: ItemQtyFrameProps }) => {
+   // Matqty holds material and quantity information
+   const cnt = parseInt(mat?.qty);
+   const display_qty =
+      cnt > 999999
+         ? Math.round(cnt / 1000000) + "M"
+         : cnt > 999
+         ? Math.round(cnt / 1000) + "k"
+         : cnt;
 
-{
-   /* <input
-                    aria-label="Level Slider"
-                    className="h-1 w-full
-                               rounded bg-zinc-200 align-middle accent-zinc-500 outline-none dark:bg-zinc-700"
-                    type="range"
-                    min="0"
-                    max={s?.levels?.length - 1}
-                    value={skillLevel}
-                    onChange={(event) =>
-                      setSkillLevel(parseInt(event.target.value))
-                    }
-                  ></input> */
-}
+   return (
+      <div
+         className="relative inline-block text-center mr-1 bg-black rounded-md"
+         key={mat?.id}
+      >
+         <a href={`/c/materials/${mat.material?.id}`}>
+            <div
+               className={`relative flex justify-center p-0.5 h-12 w-12 align-middle text-xs bg-zinc-700 text-white text-xs leading-none rounded-md zzz-rarity-${mat.material?.rarity?.id}`}
+            >
+               <Image
+                  height={44}
+                  className="object-contain"
+                  url={mat.material?.icon?.url ?? "no_image_42df124128"}
+                  options="height=44"
+                  alt={mat.material?.name}
+               />
+            </div>
+
+            <div
+               className={`relative w-12 align-middle text-xs text-white rounded-b-md `}
+            >
+               {display_qty}
+            </div>
+         </a>
+      </div>
+   );
+};

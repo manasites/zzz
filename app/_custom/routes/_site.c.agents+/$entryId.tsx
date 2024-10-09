@@ -13,6 +13,8 @@ import { Skills } from "./components/Skills";
 import { Core } from "./components/Core";
 import { Talents } from "./components/Talents";
 import { Ascension } from "./components/Ascension";
+import { SkillMaterials } from "./components/SkillMaterials";
+import { Totals } from "./components/Totals";
 import type { Agent as AgentType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
@@ -48,12 +50,15 @@ const SECTIONS = {
    core: Core,
    talents: Talents,
    ascension: Ascension,
+   skillmats: SkillMaterials,
+   totals: Totals,
    gallery: ImageGallery,
 };
 
 export default function EntryPage() {
    const { entry } = useLoaderData<typeof loader>();
    const char = entry?.data?.Agent as AgentType;
+   console.log(char);
 
    return (
       <>
@@ -64,6 +69,8 @@ export default function EntryPage() {
             <Core data={char} />
             <Talents data={char} />
             <Ascension data={char} />
+            <SkillMaterials data={char} />
+            <Totals data={char} />
             <ImageGallery data={char} />
          </Entry>
       </>
@@ -149,9 +156,14 @@ const QUERY = gql`
                lv
                materials {
                   material {
+                     id
+                     slug
                      name
                      icon {
                         url
+                     }
+                     rarity {
+                        id
                      }
                   }
                   qty
