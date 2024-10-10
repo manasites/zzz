@@ -6,6 +6,7 @@ import { gql } from "graphql-request";
 
 import { Effects } from "./components/Effects";
 import { Main } from "./components/Main";
+import { Stats } from "./components/Stats";
 import type { DiskDriveSet as DiskDriveSetType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
@@ -42,11 +43,13 @@ export async function loader({
 const SECTIONS = {
    main: Main,
    effects: Effects,
+   stats: Stats,
 };
 
 export default function EntryPage() {
    const { entry } = useLoaderData<typeof loader>();
-   const char = entry?.data?.DiskDriveSet as DiskDriveSetType;
+   const data = entry?.data;
+   const char = data?.DiskDriveSet as DiskDriveSetType;
 
    return (
       <>
@@ -54,6 +57,7 @@ export default function EntryPage() {
          <Entry>
             <Main data={char} />
             <Effects data={char} />
+            <Stats data={data} />
          </Entry>
       </>
    );
@@ -91,6 +95,7 @@ const QUERY = gql`
                      icon {
                         url
                      }
+                     fmt
                   }
                   value
                }
@@ -102,11 +107,15 @@ const QUERY = gql`
                      icon {
                         url
                      }
+                     fmt
                   }
                   value
                }
             }
          }
+      }
+      DataJson(id: "EquipmentLevelTemplateTb") {
+         json
       }
    }
 `;

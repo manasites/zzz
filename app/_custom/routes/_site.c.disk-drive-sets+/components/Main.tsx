@@ -56,7 +56,7 @@ export function Main({ data: char }: { data: DiskDriveSetType }) {
                                     {row.icon.map((iconurl: any) => {
                                        return (
                                           <>
-                                             <div className="rounded-md dark:bg-dark350 bg-zinc-600 mx-1">
+                                             <div className="rounded-md dark:bg-dark350 bg-zinc-600 mx-1 inline-block">
                                                 <Image
                                                    width={30}
                                                    className="object-contain"
