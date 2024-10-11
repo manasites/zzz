@@ -150,6 +150,12 @@ const CharacterList = ({ chars }: any) => {
             ?.character_camp.icon?.url,
       },
       {
+         id: "4",
+         name: "Sons of Calydon",
+         icon: chars.find((c: any) => c.character_camp?.id == "4")
+            ?.character_camp.icon?.url,
+      },
+      {
          id: "5",
          name: "Obol Squad",
          icon: chars.find((c: any) => c.character_camp?.id == "5")
@@ -159,6 +165,12 @@ const CharacterList = ({ chars }: any) => {
          id: "6",
          name: "Hollow Spec. Ops. S6",
          icon: chars.find((c: any) => c.character_camp?.id == "6")
+            ?.character_camp.icon?.url,
+      },
+      {
+         id: "7",
+         name: "Criminal Investigation Special Response Team",
+         icon: chars.find((c: any) => c.character_camp?.id == "7")
             ?.character_camp.icon?.url,
       },
    ] as FilterOptionType[];
@@ -227,6 +239,11 @@ const CharacterList = ({ chars }: any) => {
       <List>
          <div className="divide-color-sub bg-2-sub border-color-sub divide-y rounded-md border shadow-sm shadow-1">
             {filterOptions.map((cat) => {
+               const filterformat =
+                  cat.options.length > 5
+                     ? "items-center justify-between gap-3 grid grid-cols-4 laptop:grid-cols-5"
+                     : "items-center justify-between gap-3 max-laptop:grid max-laptop:grid-cols-4 laptop:flex";
+
                return (
                   <div
                      className="cursor-pointer items-center justify-between gap-3 p-3 laptop:flex"
@@ -235,7 +252,7 @@ const CharacterList = ({ chars }: any) => {
                      <div className="flex items-center gap-2.5 text-sm font-bold max-laptop:pb-3">
                         {cat.name}
                      </div>
-                     <div className="items-center justify-between gap-3 max-laptop:grid max-laptop:grid-cols-4 laptop:flex">
+                     <div className={`${filterformat}`}>
                         {cat.options.map((opt) => {
                            return (
                               <div
