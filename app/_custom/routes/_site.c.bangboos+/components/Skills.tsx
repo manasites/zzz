@@ -31,7 +31,9 @@ export function Skills({ data: char }: { data: BangbooType }) {
       },
    ];
 
-   const skills = char.skills;
+   const skills = char.skills
+      ?.filter((a) => a.relationTo == "bangboo_skills")
+      ?.map((b) => b.value);
 
    // Some general CSS stuff
    const skill_desc_header = "font-bold text-lg my-1";
@@ -39,10 +41,13 @@ export function Skills({ data: char }: { data: BangbooType }) {
       "text-gray-900 hover:text-white border-2 border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-sm font-bold px-3 py-1 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 cursor-pointer";
    const toggle_stats_button =
       "text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm font-bold px-3 py-1 text-center dark:border-blue-500 dark:text-blue-400 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 cursor-pointer";
+   const span_format =
+      "<style>div.skill-desc > span { text-shadow: 1px 1px 1px black; }</style>";
 
    return (
       <>
-         <H2 text="Skills" />
+         <H2>Skills</H2>
+         <div dangerouslySetInnerHTML={{ __html: span_format }}></div>
          {skills?.map((sk: any) => {
             const [skillLevel, setSkillLevel] = useState(0);
             const [tab, setTab] = useState(false); // false = Description, true = Stats
@@ -163,7 +168,7 @@ export function Skills({ data: char }: { data: BangbooType }) {
 
                         <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-2  mt-2">
                            <div
-                              className="dark:brightness-100 brightness-75"
+                              className="dark:brightness-100 brightness-75 skill-desc"
                               dangerouslySetInnerHTML={{ __html: display }}
                            ></div>
                         </div>

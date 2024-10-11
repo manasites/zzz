@@ -12,7 +12,7 @@ import { H2 } from "~/components/Headers";
 
 export function Ascension({ data: char }: { data: any }) {
    //@ts-ignore
-   const asc_cost = char.ascension_data?.sort((a, b) => a.asc - b.asc);
+   const asc_cost = char.ascensions?.sort((a, b) => a.asc - b.asc);
 
    return (
       <>
@@ -38,9 +38,9 @@ export function Ascension({ data: char }: { data: any }) {
             }}
          ></div>
 
-         <H2 text="Ascension Materials" />
+         <H2>Ascension Materials</H2>
 
-         <Table grid framed>
+         <Table grid framed dense>
             <TableHead>
                <TableRow className="text-sm">
                   <TableHeader center>Asc</TableHeader>
@@ -54,11 +54,11 @@ export function Ascension({ data: char }: { data: any }) {
                      <>
                         {promo.materials?.length > 0 ? (
                            <TableRow key={index}>
-                              <TableCell center>
+                              <TableCell center className="!py-1">
                                  <div>{promo.asc}</div>
                                  <div>(Lv {promo.lv_max})</div>
                               </TableCell>
-                              <TableCell>
+                              <TableCell className="!py-1">
                                  {/* @ts-ignore */}
                                  {promo.materials?.map((mat, key) => (
                                     <ItemQtyFrame mat={mat} key={key} />

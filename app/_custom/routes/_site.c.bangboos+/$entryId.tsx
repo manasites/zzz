@@ -51,14 +51,15 @@ const SECTIONS = {
 export default function EntryPage() {
    const { entry } = useLoaderData<typeof loader>();
    const char = entry?.data?.Bangboo as BangbooType;
+   console.log(char);
 
    return (
       <>
          {/* <Entry customComponents={SECTIONS} customData={char} /> */}
          <Entry>
             <Main data={char} />
-            {/*<Skills data={char} />}
-            <Talents data={char} />*/}
+            <Skills data={char} />
+            <Talents data={char} />
             <Ascension data={char} />
             <ImageGallery data={char} />
          </Entry>
@@ -153,6 +154,7 @@ const QUERY = gql`
                }
                ... on BangbooTalent {
                   id
+                  name
                   icon {
                      url
                   }

@@ -21,7 +21,7 @@ export function Main({ data: char }: { data: BangbooType }) {
       },
    ];
 
-   // Get the ascension_data array index based on current selected level and ascension checkmark
+   // Get the ascensions array index based on current selected level and ascension checkmark
    const asc_index =
       Math.floor(level / 10) +
       ((!levelAscensionCheck && level / 10 == Math.floor(level / 10)) ||
@@ -29,33 +29,37 @@ export function Main({ data: char }: { data: BangbooType }) {
          ? -1
          : 0);
 
-   const dispasc = char?.ascension_data?.[asc_index]?.asc;
+   const dispasc = char?.ascensions?.[asc_index]?.asc;
    const basicStatDisplay = char?.stats.map((stat) => {
       let data = {};
       data["label"] = stat?.stat?.name;
       data["value"] = stat?.base / stat?.stat?.divisor;
       if (stat?.growth) {
-        data["value"] = formatValue(
-          stat?.stat,
-          calculateStat(
-            level,
-            stat?.base,
-            char?.ascensions?.[asc_index]?.stat_adv?.find(
-              (s) => s.stat?.id === stat?.stat?.id)
-              ?.value,
-            stat?.growth,
-            stat?.stat?.divisor
-          )
-        );
+         data["value"] = formatValue(
+            stat?.stat,
+            calculateStat(
+               level,
+               stat?.base,
+               char?.ascensions?.[asc_index]?.stat_adv?.find(
+                  (s) => s.stat?.id === stat?.stat?.id,
+               )?.value,
+               stat?.growth,
+               stat?.stat?.divisor,
+            ),
+         );
       } else {
-         const add = char?.ascensions?.[asc_index]?.stat_add?.find(
-            (s) => s.stat?.id.substring(0, 3) === stat?.stat?.id, // correct?
-         )?.value ?? 0;
-        data["value"] = formatValue(stat?.stat, (stat?.base + add) / stat?.stat?.divisor);
+         const add =
+            char?.ascensions?.[asc_index]?.stat_add?.find(
+               (s) => s.stat?.id.substring(0, 3) === stat?.stat?.id, // correct?
+            )?.value ?? 0;
+         data["value"] = formatValue(
+            stat?.stat,
+            (stat?.base + add) / stat?.stat?.divisor,
+         );
       }
       data["icon"] = stat?.stat?.icon?.url;
       return data;
-    });
+   });
 
    return (
       <>
@@ -241,9 +245,7 @@ const StatBlock = ({ attr }: any) => {
                </span>
             </div>
             <div className="text-sm font-semibold">
-               <span className="inline-block align-middle">
-                  {attr_val}
-               </span>
+               <span className="inline-block align-middle">{attr_val}</span>
             </div>
          </div>
       </>
