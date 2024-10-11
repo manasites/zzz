@@ -147,6 +147,41 @@ const CharacterList = ({ chars }: any) => {
          subfield: "stat",
       },
    ] as FilterOptionType[];
+   const speclist = chars.map((c: any) => {
+      return {
+         id: c.specialty?.id,
+         name: c.specialty?.name,
+         icon: c.specialty?.icon?.url,
+      };
+   });
+
+   const specialties = [
+      {
+         id: "1",
+         name: "Attack",
+         icon: speclist.find((a) => a.id == "1")?.icon,
+      },
+      {
+         id: "2",
+         name: "Stun",
+         icon: speclist.find((a) => a.id == "2")?.icon,
+      },
+      {
+         id: "3",
+         name: "Anomaly",
+         icon: speclist.find((a) => a.id == "3")?.icon,
+      },
+      {
+         id: "4",
+         name: "Support",
+         icon: speclist.find((a) => a.id == "4")?.icon,
+      },
+      {
+         id: "5",
+         name: "Defense",
+         icon: speclist.find((a) => a.id == "5")?.icon,
+      },
+   ] as FilterOptionType[];
 
    // const camps = chars.map((c) => {
    //    return c?.camp;
@@ -160,6 +195,11 @@ const CharacterList = ({ chars }: any) => {
          name: "Rarity",
          field: "rarity",
          options: rarities,
+      },
+      {
+         name: "Specialty",
+         field: "specialty",
+         options: specialties,
       },
       {
          name: "Secondary Stat",
@@ -324,6 +364,7 @@ const CharacterList = ({ chars }: any) => {
             {cfiltered?.map((char, int) => {
                const raritynum = char?.rarity?.name;
                const rarityurl = char?.rarity?.icon_item?.url;
+               const specialtyurl = char?.specialty?.icon?.url;
 
                const mainname = char?.stat_primary?.stat?.name;
                const mainval = formatValue(
@@ -367,11 +408,22 @@ const CharacterList = ({ chars }: any) => {
                      <div className="w-full">
                         {/* Character Icon */}
                         <div className="relative w-full">
+                           {/* Specialty */}
+                           <div className="border-color shadow-1 absolute left-1 top-0 z-20 h-7 w-7 rounded-full border bg-zinc-800 shadow">
+                              <Image
+                                 options="aspect_ratio=1:1&height=42&width=42"
+                                 alt="Icon"
+                                 className="object-contain"
+                                 url={specialtyurl}
+                                 loading={int < 10 ? "lazy" : undefined}
+                              />
+                           </div>
+
                            {/* Rarity */}
                            <div className="border-color shadow-1 absolute right-1 top-0 z-20 h-7 w-7 rounded-full border bg-zinc-800 shadow">
                               <Image
                                  options="aspect_ratio=1:1&height=42&width=42"
-                                 alt="Path"
+                                 alt="Icon"
                                  className="object-contain"
                                  url={rarityurl}
                                  loading={int < 10 ? "lazy" : undefined}
@@ -471,6 +523,7 @@ const CHARACTERS = gql`
                }
             }
             specialty {
+               id
                name
                icon {
                   url

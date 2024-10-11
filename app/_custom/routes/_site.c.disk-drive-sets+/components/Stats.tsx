@@ -137,7 +137,7 @@ export function Stats({ data }: any) {
                   {/* Slider */}
                   <input
                      aria-label="Level Slider"
-                     className="flex-grow"
+                     className="flex-grow w-full"
                      type="range"
                      min="0"
                      max={json_rarity.length - 1}

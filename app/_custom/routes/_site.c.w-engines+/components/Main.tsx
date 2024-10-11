@@ -25,6 +25,11 @@ export function Main({ data }: { data: WEngineType }) {
          value: "",
          icon: char.rarity?.icon_item?.url,
       },
+      {
+         label: "Specialty",
+         value: char.specialty?.name,
+         icon: char.specialty?.icon?.url,
+      },
    ];
 
    const asc_index =
