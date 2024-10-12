@@ -46,7 +46,37 @@ export const AgentCoreSkills: CollectionConfig = {
                      type: "textarea",
                   },
                ],
-            }
+            },
+            {
+               name: "stats",
+               type: "array",
+               fields: [
+                  {
+                     name: "stat",
+                     type: "relationship",
+                     relationTo: "stats",
+                  },
+                  {
+                     name: "value",
+                     type: "number",
+                  },
+               ],
+            },
+            {
+               name: "materials",
+               type: "array",
+               fields: [
+                  {
+                     name: "material",
+                     type: "relationship",
+                     relationTo: "materials",
+                  },
+                  {
+                     name: "qty",
+                     type: "number",
+                  },
+               ],
+            },
          ],
       },
       {
