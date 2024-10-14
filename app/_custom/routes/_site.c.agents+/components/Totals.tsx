@@ -7,10 +7,9 @@ import {
    TableHeader,
    TableRow,
 } from "~/components/Table";
-import clsx from "clsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/components/Tooltip";
 
 import { H2 } from "~/components/Headers";
-import { Icon } from "~/components/Icon";
 
 export function Totals({ data: char }: { data: any }) {
    //@ts-ignore
@@ -52,6 +51,14 @@ const TotalMaterials = ({ data }: any) => {
    const skillData = data?.skills?.map((skill) => skill?.materials)?.flat();
    let skillTotal = CalculateTotals(skillData);
 
+   const coreData = data?.core_skill?.levels.map((level) => {
+      return { materials: level.materials };
+   });
+   let coreTotal = CalculateTotals(coreData);
+
+   const allData = [...ascData, ...skillData, ...coreData];
+   let allTotal = CalculateTotals(allData);
+
    const total_display = [
       {
          name: "Full Ascension",
@@ -60,6 +67,14 @@ const TotalMaterials = ({ data }: any) => {
       {
          name: "All Skills",
          data: skillTotal,
+      },
+      {
+         name: "Core Enhancements",
+         data: coreTotal,
+      },
+      {
+         name: "Total",
+         data: allTotal,
       },
    ];
 
@@ -145,7 +160,7 @@ const ItemQtyFrame = ({ mat }: { mat: ItemQtyFrameProps }) => {
    const cnt = parseInt(mat?.qty);
    const display_qty =
       cnt > 999999
-         ? Math.round(cnt / 1000000) + "M"
+         ? Math.round(cnt / 100000) / 10 + "M"
          : cnt > 999
          ? Math.round(cnt / 1000) + "k"
          : cnt;
@@ -171,7 +186,20 @@ const ItemQtyFrame = ({ mat }: { mat: ItemQtyFrameProps }) => {
             <div
                className={`relative w-10 align-middle text-xs text-white rounded-b-md `}
             >
-               {display_qty}
+               <Tooltip placement="top">
+                  <TooltipTrigger>{display_qty}</TooltipTrigger>
+                  {display_qty != cnt ? (
+                     <>
+                        <TooltipContent>
+                           <div className="w-auto">
+                              <div className="pb-0.5 text-white text-xs">
+                                 {cnt.toLocaleString()}
+                              </div>
+                           </div>
+                        </TooltipContent>
+                     </>
+                  ) : null}
+               </Tooltip>
             </div>
          </a>
       </div>

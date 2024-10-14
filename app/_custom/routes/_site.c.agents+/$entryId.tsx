@@ -186,6 +186,31 @@ const QUERY = gql`
                   title
                   desc
                }
+               stats {
+                  stat {
+                     id
+                     name
+                     fmt
+                     icon {
+                        url
+                     }
+                  }
+                  value
+               }
+               materials {
+                  material {
+                     id
+                     slug
+                     name
+                     rarity {
+                        id
+                     }
+                     icon {
+                        url
+                     }
+                  }
+                  qty
+               }
             }
          }
          talents {

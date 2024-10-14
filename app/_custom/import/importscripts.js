@@ -19,6 +19,8 @@ pnpm import_collection_data collection:agents,filename:Agent.json,idname:data_ke
 pnpm import_collection_data collection:skills,filename:Skill.json,idname:data_key,sync:false,overwrite:false
 # Talents
 pnpm import_collection_data collection:talents,filename:Talent.json,idname:data_key,sync:false,overwrite:false
+# Agent Core Enhancement
+pnpm import_collection_data collection:agent-core-skills,filename:AgentCoreSkill.json,idname:id,sync:false,overwrite:false
 
 # Bangboos
 pnpm import_collection_data collection:bangboos,filename:Bangboo.json,idname:data_key,sync:false,overwrite:false
