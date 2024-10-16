@@ -11,6 +11,14 @@ import {
    TableHeader,
    TableRow,
 } from "~/components/Table";
+import {
+   Disclosure,
+   DisclosureButton,
+   DisclosurePanel,
+} from "@headlessui/react";
+
+import clsx from "clsx";
+import { Icon } from "~/components/Icon";
 
 export function Skills({ data: char }: { data: AgentType }) {
    const desc_icons = [
@@ -169,6 +177,140 @@ export function Skills({ data: char }: { data: AgentType }) {
                                  </>
                               );
                            })}
+                           {/* Extra Stats */}
+
+                           <Disclosure>
+                              {({ open }) => (
+                                 <>
+                                    <DisclosureButton
+                                       className="my-3 flex justify-between items-center gap-4 font-bold w-full p-2 rounded-lg bg-zinc-50
+                dark:bg-zinc-700 dark:border-zinc-600 border-zinc-300 shadow-1 shadow-sm border border-color-sub"
+                                    >
+                                       <div
+                                          className={clsx(
+                                             open ? "transform rotate-180" : "",
+                                             "dark:bg-zinc-600 bg-white rounded-full size-5 flex items-center justify-center",
+                                          )}
+                                       >
+                                          <Icon size={20} name="chevron-down" />
+                                       </div>
+                                       <span>Extra Stats</span>
+                                       <div
+                                          className={clsx(
+                                             open ? "transform rotate-180" : "",
+                                             "dark:bg-zinc-600 bg-white rounded-full size-5 flex items-center justify-center",
+                                          )}
+                                       >
+                                          <Icon size={20} name="chevron-down" />
+                                       </div>
+                                    </DisclosureButton>
+                                    <DisclosurePanel className="space-y-3">
+                                       <Table
+                                          grid
+                                          framed
+                                          dense
+                                          className="text-xs font-mono"
+                                       >
+                                          <TableHead>
+                                             <TableRow>
+                                                <TableHeader
+                                                   center
+                                                   className="!py-0.5"
+                                                >
+                                                   Name
+                                                </TableHeader>
+                                                <TableHeader
+                                                   center
+                                                   className="!py-0.5"
+                                                >
+                                                   Energy Gain
+                                                </TableHeader>
+                                                <TableHeader
+                                                   center
+                                                   className="!py-0.5"
+                                                >
+                                                   Decibel Gain
+                                                </TableHeader>
+                                                <TableHeader
+                                                   center
+                                                   className="!py-0.5"
+                                                >
+                                                   Anomaly Buildup
+                                                </TableHeader>
+                                             </TableRow>
+                                          </TableHead>
+                                          <TableBody>
+                                             {stat_list?.map(
+                                                (stat: any, i: any) => {
+                                                   // skillLevel should start at 0
+                                                   return (
+                                                      <>
+                                                         {stat.params
+                                                            ?.length !==
+                                                         undefined ? (
+                                                            // Has parameters!
+                                                            <>
+                                                               <TableRow>
+                                                                  <TableCell
+                                                                     center
+                                                                     className="!py-0"
+                                                                  >
+                                                                     {
+                                                                        stat.title
+                                                                     }
+                                                                  </TableCell>
+                                                                  <TableCell
+                                                                     center
+                                                                     className="!py-0"
+                                                                  >
+                                                                     {
+                                                                        stat.energy_gain
+                                                                     }
+                                                                  </TableCell>
+                                                                  <TableCell
+                                                                     center
+                                                                     className="!py-0"
+                                                                  >
+                                                                     {
+                                                                        stat.decibel_gain
+                                                                     }
+                                                                  </TableCell>
+                                                                  <TableCell
+                                                                     center
+                                                                     className="!py-0"
+                                                                  >
+                                                                     {
+                                                                        stat.anomaly_buildup
+                                                                     }
+                                                                  </TableCell>
+                                                               </TableRow>
+                                                            </>
+                                                         ) : (
+                                                            // No parameters
+                                                            <>
+                                                               <TableRow>
+                                                                  <TableCell
+                                                                     center
+                                                                     className="!py-0.5"
+                                                                     colSpan={4}
+                                                                  >
+                                                                     {
+                                                                        stat.title
+                                                                     }
+                                                                  </TableCell>
+                                                               </TableRow>
+                                                            </>
+                                                         )}
+                                                      </>
+                                                   );
+                                                },
+                                             )}
+                                          </TableBody>
+                                       </Table>
+                                    </DisclosurePanel>
+                                 </>
+                              )}
+                           </Disclosure>
                            {/* Materials */}
                            {mat_list?.[skillLevel]?.materials?.length > 0 ? (
                               <Table grid framed dense>

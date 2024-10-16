@@ -154,6 +154,9 @@ const QUERY = gql`
             modifiers {
                title
                params
+               energy_gain
+               decibel_gain
+               anomaly_buildup
             }
             materials {
                lv
