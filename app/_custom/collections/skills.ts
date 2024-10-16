@@ -51,6 +51,18 @@ export const Skills: CollectionConfig = {
                name: "params",
                type: "json",
             },
+            {
+               name: "energy_gain",
+               type: "text",
+            },
+            {
+               name: "decibel_gain",
+               type: "text",
+            },
+            {
+               name: "anomaly_buildup",
+               type: "text",
+            },
          ],
       },
       {
@@ -74,9 +86,9 @@ export const Skills: CollectionConfig = {
                   {
                      name: "qty",
                      type: "number",
-                  }
-               ]
-            }
+                  },
+               ],
+            },
          ],
       },
       {

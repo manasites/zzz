@@ -16,7 +16,7 @@ pnpm import_collection_data collection:materials,filename:Material.json,idname:d
 # Agents
 pnpm import_collection_data collection:agents,filename:Agent.json,idname:data_key,sync:false,overwrite:false
 # Skills
-pnpm import_collection_data collection:skills,filename:Skill.json,idname:data_key,sync:false,overwrite:false
+pnpm import_collection_data collection:skills,filename:Skill.json,idname:id,sync:false,overwrite:false
 # Talents
 pnpm import_collection_data collection:talents,filename:Talent.json,idname:data_key,sync:false,overwrite:false
 # Agent Core Enhancement
