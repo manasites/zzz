@@ -50,6 +50,7 @@ export async function fetchWithCache<T>(
    url: string,
    init?: RequestInit,
    ttl?: number,
+   isAuthOverride = false,
 ) {
    //The key could be graphql, in that case we'll use init.body instead. We should also delete any spacing characters
    const key = init?.body
@@ -62,7 +63,29 @@ export async function fetchWithCache<T>(
          key,
          async getFreshValue() {
             try {
-               const response = await fetch(url, init);
+               const response = await fetch(url, {
+                  ...init,
+                  ...(isAuthOverride &&
+                  process.env.MANA_APP_KEY &&
+                  !process.env.CUSTOM_DB_APP_KEY
+                     ? {
+                          headers: {
+                             Authorization: `users API-Key ${process.env.MANA_APP_KEY}`,
+                             "Content-Type": "application/json",
+                          },
+                       }
+                     : {}),
+                  ...(isAuthOverride &&
+                  process.env.CUSTOM_DB_APP_KEY &&
+                  !process.env.MANA_APP_KEY
+                     ? {
+                          headers: {
+                             Authorization: `users API-Key ${process.env.CUSTOM_DB_APP_KEY}`,
+                             "Content-Type": "application/json",
+                          },
+                       }
+                     : {}),
+               });
                return (await response.json()) as T;
             } catch (error) {
                console.error(error);
@@ -88,6 +111,7 @@ export async function gqlRequestWithCache<T>(
    variables?: any,
    ttl?: number,
    request?: Request,
+   isAuthOverride = false,
 ) {
    const key = `${url}${query}${JSON.stringify(variables)}`;
 
@@ -99,7 +123,23 @@ export async function gqlRequestWithCache<T>(
             try {
                // We need to catch this to avoid graphql throwing crashing the server
                const response = await gqlRequest(url, query, variables, {
-                  cookie: request?.headers.get("cookie") ?? "",
+                  ...(request && !isAuthOverride
+                     ? { cookie: request?.headers.get("cookie") ?? "" }
+                     : {}),
+                  ...(isAuthOverride &&
+                  process.env.MANA_APP_KEY &&
+                  !process.env.CUSTOM_DB_APP_KEY
+                     ? {
+                          Authorization: `users API-Key ${process.env.MANA_APP_KEY}`,
+                       }
+                     : {}),
+                  ...(isAuthOverride &&
+                  process.env.CUSTOM_DB_APP_KEY &&
+                  !process.env.MANA_APP_KEY
+                     ? {
+                          Authorization: `users API-Key ${process.env.CUSTOM_DB_APP_KEY}`,
+                       }
+                     : {}),
                });
                // console.log("cached: ", key);
                return response as T;
