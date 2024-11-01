@@ -4,7 +4,7 @@ import { isStaff } from "../../db/collections/users/users.access";
 
 export const AchievementGroups: CollectionConfig = {
    slug: "achievement-groups",
-   labels: { singular: "achievement-group", plural: "achievement-groups" },
+   labels: { singular: "Achievement Group", plural: "Achievement Groups" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

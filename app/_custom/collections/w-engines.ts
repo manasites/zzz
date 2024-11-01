@@ -8,7 +8,7 @@ import {
 
 export const WEngines: CollectionConfig = {
    slug: "w-engines",
-   labels: { singular: "W-engine", plural: "W-engines" },
+   labels: { singular: "W-Engine", plural: "W-Engines" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

@@ -1,13 +1,21 @@
 import type { CollectionConfig } from "payload/types";
 
 import { isStaff } from "../../db/collections/users/users.access";
+import {
+   afterDeleteSearchSyncHook,
+   afterChangeSearchSyncHook,
+} from "../hooks/search-
 
 export const BangbooSkills: CollectionConfig = {
    slug: "bangboo-skills",
-   labels: { singular: "bangboo-skill", plural: "bangboo-skills" },
+   labels: { singular: "Bangboo Skill", plural: "Bangboo Skills" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
+   },
+   hooks: {
+      afterDelete: [afterDeleteSearchSyncHook],
+      afterChange: [afterChangeSearchSyncHook],
    },
    access: {
       create: isStaff,

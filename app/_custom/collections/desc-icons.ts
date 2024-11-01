@@ -4,7 +4,7 @@ import { isStaff } from "../../db/collections/users/users.access";
 
 export const DescIcons: CollectionConfig = {
    slug: "desc-icons",
-   labels: { singular: "desc-icon", plural: "desc-icons" },
+   labels: { singular: "Desc Icon", plural: "Desc Icons" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

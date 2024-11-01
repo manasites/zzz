@@ -4,7 +4,7 @@ import { isStaff } from "../../db/collections/users/users.access";
 
 export const DiskDrivePartitions: CollectionConfig = {
    slug: "disk-drive-partitions",
-   labels: { singular: "disk-drive-partition", plural: "disk-drive-partitions" },
+   labels: { singular: "Disk Drive Partition", plural: "Disk Drive Partitions" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

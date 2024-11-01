@@ -4,7 +4,7 @@ import { isStaff } from "../../db/collections/users/users.access";
 
 export const CharacterCamps: CollectionConfig = {
    slug: "character-camps",
-   labels: { singular: "character-camp", plural: "character-camps" },
+   labels: { singular: "Character Camp", plural: "Character Camps" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

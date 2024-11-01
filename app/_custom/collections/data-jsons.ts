@@ -4,7 +4,7 @@ import { isStaff } from "../../db/collections/users/users.access";
 
 export const DataJsons: CollectionConfig = {
    slug: "data-jsons",
-   labels: { singular: "data-json", plural: "data-jsons" },
+   labels: { singular: "Data JSON", plural: "Data JSONs" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

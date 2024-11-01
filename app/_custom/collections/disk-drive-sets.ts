@@ -8,7 +8,7 @@ import {
 
 export const DiskDriveSets: CollectionConfig = {
    slug: "disk-drive-sets",
-   labels: { singular: "Disk Drive Set", plural: "Disk Drive Set" },
+   labels: { singular: "Disk Drive Set", plural: "Disk Drive Sets" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
