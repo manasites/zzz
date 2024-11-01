@@ -34,18 +34,6 @@ export const DamageElements: CollectionConfig = {
          relationTo: "images",
       },
       {
-         name: "hp_revise",
-         type: "number",
-      },
-      {
-         name: "armor_revise",
-         type: "number",
-      },
-      {
-         name: "shield_revise",
-         type: "number",
-      },
-      {
          name: "checksum",
          type: "text",
          required: true,
