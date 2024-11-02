@@ -4,7 +4,7 @@ import { isStaff } from "../../db/collections/users/users.access";
 import {
    afterDeleteSearchSyncHook,
    afterChangeSearchSyncHook,
-} from "../hooks/search-
+} from "../hooks/search-hooks";
 
 export const BangbooTalents: CollectionConfig = {
    slug: "bangboo-talents",
