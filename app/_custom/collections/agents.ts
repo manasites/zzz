@@ -70,15 +70,20 @@ export const Agents: CollectionConfig = {
          relationTo: "rarities",
       },
       {
-         name: "damage_type",
+         name: "character_specialty",
          type: "relationship",
-         relationTo: "damage-types",
-         hasMany: true,
+         relationTo: "specialties",
       },
       {
          name: "damage_element",
          type: "relationship",
          relationTo: "damage-elements",
+         hasMany: true,
+      },
+      {
+         name: "damage_type",
+         type: "relationship",
+         relationTo: "damage-types",
          hasMany: true,
       },
       {
