@@ -12,7 +12,7 @@ import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/En
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
 import { fetchEntry } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/fetchEntry.server";
 
-import { DiskDriveSets } from "../../collections/disk-drive-sets";
+import { DiskDriveSets } from "../../collections/drive-disk-sets";
 
 // Custom Site / Collection Config Imports
 

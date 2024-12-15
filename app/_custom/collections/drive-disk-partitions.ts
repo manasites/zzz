@@ -2,9 +2,9 @@ import type { CollectionConfig } from "payload/types";
 
 import { isStaff } from "../../db/collections/users/users.access";
 
-export const DiskDrivePools: CollectionConfig = {
-   slug: "disk-drive-pools",
-   labels: { singular: "Disk Drive Pool", plural: "Disk Drive Pools" },
+export const DriveDiskPartitions: CollectionConfig = {
+   slug: "drive-disk-partitions",
+   labels: { singular: "Drive DiskPartition", plural: "Drive DiskPartitions" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
@@ -21,19 +21,8 @@ export const DiskDrivePools: CollectionConfig = {
          type: "text",
       },
       {
-         name: "stats",
-         type: "array",
-         fields: [
-            {
-               name: "stat",
-               type: "relationship",
-               relationTo: "stats",
-            },
-            {
-               name: "value",
-               type: "number",
-            },
-         ],
+         name: "name",
+         type: "text",
       },
       {
          name: "checksum",

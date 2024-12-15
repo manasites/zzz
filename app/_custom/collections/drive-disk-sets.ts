@@ -6,9 +6,9 @@ import {
    afterDeleteSearchSyncHook,
 } from "../hooks/search-hooks";
 
-export const DiskDriveSets: CollectionConfig = {
-   slug: "disk-drive-sets",
-   labels: { singular: "Disk Drive Set", plural: "Disk Drive Sets" },
+export const DriveDiskSets: CollectionConfig = {
+   slug: "drive-disk-sets",
+   labels: { singular: "Drive DiskSet", plural: "Drive DiskSets" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

@@ -13,9 +13,9 @@ import { DamageElements } from "./damage-elements";
 import { DamageTypes } from "./damage-types";
 import { DataJsons } from "./data-jsons";
 import { DescIcons } from "./desc-icons";
-import { DiskDrivePartitions } from "./disk-drive-partitions";
-import { DiskDrivePools } from "./disk-drive-pools";
-import { DiskDriveSets } from "./disk-drive-sets";
+import { DriveDiskPartitions } from "./drive-disk-partitions";
+import { DriveDiskPools } from "./drive-disk-pools";
+import { DriveDiskSets } from "./drive-disk-sets";
 import { MaterialClasses } from "./material-classes";
 import { Materials } from "./materials";
 import { Rarities } from "./rarities";
@@ -41,9 +41,9 @@ export const CustomCollections = [
    DamageTypes,
    DataJsons,
    DescIcons,
-   DiskDrivePartitions,
-   DiskDrivePools,
-   DiskDriveSets,
+   DriveDiskPartitions,
+   DriveDiskPools,
+   DriveDiskSets,
    MaterialClasses,
    Materials,
    Rarities,
