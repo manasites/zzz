@@ -80,12 +80,12 @@ export const DriveDiskSets: CollectionConfig = {
             {
                name: "partition",
                type: "relationship",
-               relationTo: "disk-drive-partitions",
+               relationTo: "drive-disk-partitions",
             },
             {
                name: "main_stat_pool",
                type: "relationship",
-               relationTo: "disk-drive-pools",
+               relationTo: "drive-disk-pools",
                hasMany: true,
             },
             {
