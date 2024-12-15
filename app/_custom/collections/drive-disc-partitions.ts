@@ -2,9 +2,9 @@ import type { CollectionConfig } from "payload/types";
 
 import { isStaff } from "../../db/collections/users/users.access";
 
-export const DriveDiskPartitions: CollectionConfig = {
-   slug: "drive-disk-partitions",
-   labels: { singular: "Drive DiskPartition", plural: "Drive DiskPartitions" },
+export const DriveDiscPartitions: CollectionConfig = {
+   slug: "drive-disc-partitions",
+   labels: { singular: "Drive Disc Partition", plural: "Drive Disc Partitions" },
    admin: {
       group: "Custom",
       useAsTitle: "name",

@@ -6,9 +6,9 @@ import {
    afterDeleteSearchSyncHook,
 } from "../hooks/search-hooks";
 
-export const DriveDiskSets: CollectionConfig = {
-   slug: "drive-disk-sets",
-   labels: { singular: "Drive DiskSet", plural: "Drive DiskSets" },
+export const DriveDiscSets: CollectionConfig = {
+   slug: "drive-disc-sets",
+   labels: { singular: "Drive Disc Set", plural: "Drive Disc Sets" },
    admin: {
       group: "Custom",
       useAsTitle: "name",
@@ -80,18 +80,18 @@ export const DriveDiskSets: CollectionConfig = {
             {
                name: "partition",
                type: "relationship",
-               relationTo: "drive-disk-partitions",
+               relationTo: "drive-disc-partitions",
             },
             {
                name: "main_stat_pool",
                type: "relationship",
-               relationTo: "drive-disk-pools",
+               relationTo: "drive-disc-pools",
                hasMany: true,
             },
             {
                name: "sub_stat_pool",
                type: "relationship",
-               relationTo: "disk-drive-pools",
+               relationTo: "drive-disc-pools",
                hasMany: true,
             },
          ],
