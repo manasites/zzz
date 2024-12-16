@@ -157,6 +157,7 @@ const QUERY = gql`
                energy_gain
                decibel_gain
                anomaly_buildup
+               sp_consume
             }
             materials {
                lv

@@ -237,6 +237,12 @@ export function Skills({ data: char }: { data: AgentType }) {
                                                 >
                                                    Anomaly Buildup
                                                 </TableHeader>
+                                                <TableHeader
+                                                   center
+                                                   className="!py-0.5"
+                                                >
+                                                   SP Consumption
+                                                </TableHeader>
                                              </TableRow>
                                           </TableHead>
                                           <TableBody>
@@ -281,6 +287,14 @@ export function Skills({ data: char }: { data: AgentType }) {
                                                                   >
                                                                      {
                                                                         stat.anomaly_buildup
+                                                                     }
+                                                                  </TableCell>
+                                                                  <TableCell
+                                                                     center
+                                                                     className="!py-0"
+                                                                  >
+                                                                     {
+                                                                        stat.sp_consume
                                                                      }
                                                                   </TableCell>
                                                                </TableRow>
