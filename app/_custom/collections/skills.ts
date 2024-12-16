@@ -53,15 +53,23 @@ export const Skills: CollectionConfig = {
             },
             {
                name: "energy_gain",
-               type: "text",
+               type: "number",
             },
             {
                name: "decibel_gain",
-               type: "text",
+               type: "number",
             },
             {
                name: "anomaly_buildup",
-               type: "text",
+               type: "number",
+            },
+            {
+               name: "sp_consume",
+               type: "number",
+            },
+            {
+               name: "attack_data",
+               type: "number",
             },
          ],
       },
