@@ -23,13 +23,13 @@ export function Ascension({ data: char }: { data: any }) {
                         border-bottom: 4px solid #7DA89B;
                     }
                     div.zzz-rarity-2 {
-                        border-bottom: 4px solid #7DA89B;
-                    }
-                    div.zzz-rarity-3 {
                         border-bottom: 4px solid #00A9FF;
                     }
-                    div.zzz-rarity-4 {
+                    div.zzz-rarity-3 {
                         border-bottom: 4px solid #E900FF;
+                    }
+                    div.zzz-rarity-4 {
+                        border-bottom: 4px solid #FFBA05;
                     }
                     div.zzz-rarity-5 {
                         border-bottom: 4px solid #FFBA05;
@@ -43,7 +43,7 @@ export function Ascension({ data: char }: { data: any }) {
          <Table grid framed dense>
             <TableHead>
                <TableRow className="text-sm">
-                  <TableHeader center>Asc</TableHeader>
+                  <TableHeader center>Ascension</TableHeader>
                   <TableHeader>Materials</TableHeader>
                </TableRow>
             </TableHead>
@@ -55,8 +55,7 @@ export function Ascension({ data: char }: { data: any }) {
                         {promo.materials?.length > 0 ? (
                            <TableRow key={index}>
                               <TableCell center className="!py-1">
-                                 <div>{promo.asc}</div>
-                                 <div>(Lv {promo.lv_max})</div>
+                                 <div>Lv. {promo.lv_max}</div>
                               </TableCell>
                               <TableCell className="!py-1">
                                  {/* @ts-ignore */}

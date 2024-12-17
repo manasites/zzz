@@ -55,9 +55,9 @@ export default function EntryPage() {
       <>
          {/* <Entry customComponents={SECTIONS} customData={char} /> */}
          <Entry>
-            <Main data={char} />
+            {/*<Main data={char} />
             <Effects data={char} />
-            <Stats data={data} />
+            <Stats data={data} />*/}
          </Entry>
       </>
    );

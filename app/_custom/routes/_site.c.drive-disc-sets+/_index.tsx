@@ -65,17 +65,17 @@ const CharacterList = ({ chars }: any) => {
       {
          id: "2",
          //name: "B",
-         icon: "https://static.mana.wiki/zzz/ItemRarityB.png",
+         icon: "https://static.mana.wiki/zzz/ItemRarity_2.png",
       },
       {
          id: "3",
          //name: "A",
-         icon: "https://static.mana.wiki/zzz/ItemRarityA.png",
+         icon: "https://static.mana.wiki/zzz/ItemRarity_3.png",
       },
       {
          id: "4",
          //name: "S",
-         icon: "https://static.mana.wiki/zzz/ItemRarityS.png",
+         icon: "https://static.mana.wiki/zzz/ItemRarity_4.png",
       },
    ] as FilterOptionType[];
 

@@ -23,27 +23,27 @@ export function Core({ data: char }: { data: AgentType }) {
    const core_enh_list = [
       {
          name: "A",
-         icon: "https://static.mana.wiki/zzz/IconRoleTalentKeyA.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_A.png",
       },
       {
          name: "B",
-         icon: "https://static.mana.wiki/zzz/IconRoleTalentKeyB.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_b.png",
       },
       {
          name: "C",
-         icon: "https://static.mana.wiki/zzz/IconRoleTalentKeyC.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_C.png",
       },
       {
          name: "D",
-         icon: "https://static.mana.wiki/zzz/IconRoleTalentKeyD.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_D.png",
       },
       {
          name: "E",
-         icon: "https://static.mana.wiki/zzz/IconRoleTalentKeyE.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_E.png",
       },
       {
          name: "F",
-         icon: "https://static.mana.wiki/zzz/IconRoleTalentKeyF.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_F.png",
       },
    ];
 
@@ -92,7 +92,7 @@ export function Core({ data: char }: { data: AgentType }) {
          {/* Description */}
 
          <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border-t border-r border-l border-color-sub rounded-t-lg px-3 py-1  mt-2 p-1 flex items-center">
-            <div className="text-lg mx-2">Lv{skillLevel}</div>
+            <div className="text-lg mx-2">Lv.{skillLevel}</div>
             <input
                aria-label="Level Slider"
                className="h-1 w-full

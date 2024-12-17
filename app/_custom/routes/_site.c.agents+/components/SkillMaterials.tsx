@@ -34,13 +34,13 @@ export function SkillMaterials({ data: char }: { data: any }) {
                         border-bottom: 4px solid #7DA89B;
                     }
                     div.zzz-rarity-2 {
-                        border-bottom: 4px solid #7DA89B;
-                    }
-                    div.zzz-rarity-3 {
                         border-bottom: 4px solid #00A9FF;
                     }
-                    div.zzz-rarity-4 {
+                    div.zzz-rarity-3 {
                         border-bottom: 4px solid #E900FF;
+                    }
+                    div.zzz-rarity-4 {
+                        border-bottom: 4px solid #FFBA05;
                     }
                     div.zzz-rarity-5 {
                         border-bottom: 4px solid #FFBA05;
@@ -132,7 +132,7 @@ const SkillTabs = ({ skill_list }: any) => {
          <div className="shadow-sm dark:shadow-zinc-800/60 bg-clip-padding border-y tablet:border border-color-sub tablet:rounded-xl max-w-[754px] mx-auto max-tablet:-mx-3">
             <TabGroup selectedIndex={selectedIndex} onChange={setSelectedIndex}>
                <TabList
-                  className="relative flex bg-zinc-50 dark:bg-dark350 scrollbar 
+                  className="relative flex bg-zinc-50 dark:bg-dark350 scrollbar
                             dark:scrollbar-thumb-zinc-500 dark:scrollbar-track-dark450
                             scrollbar-thumb-zinc-300 scrollbar-track-zinc-100
                               overflow-auto border-b border-color-sub p-3 items-center gap-3 tablet:rounded-t-xl"

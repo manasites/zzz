@@ -23,13 +23,13 @@ export function Totals({ data: char }: { data: any }) {
                         border-bottom: 4px solid #7DA89B;
                     }
                     div.zzz-rarity-2 {
-                        border-bottom: 4px solid #7DA89B;
-                    }
-                    div.zzz-rarity-3 {
                         border-bottom: 4px solid #00A9FF;
                     }
-                    div.zzz-rarity-4 {
+                    div.zzz-rarity-3 {
                         border-bottom: 4px solid #E900FF;
+                    }
+                    div.zzz-rarity-4 {
+                        border-bottom: 4px solid #FFBA05;
                     }
                     div.zzz-rarity-5 {
                         border-bottom: 4px solid #FFBA05;

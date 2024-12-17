@@ -21,38 +21,39 @@ import clsx from "clsx";
 import { Icon } from "~/components/Icon";
 
 export function Skills({ data: char }: { data: AgentType }) {
+   // TODO: These should be pulled from desc icons collection
    const desc_icons = [
       {
          id: "Icon_Normal",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeyNormal.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_Normal.png",
       },
       {
          id: "Icon_Special",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeySpecial.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_Special.png",
       },
       {
          id: "Icon_Evade",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeyEvade.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_Evade.png",
       },
       {
          id: "Icon_Ultimate",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeyUltimate.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_Ultimate.png",
       },
       {
          id: "Icon_Switch",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeySwitch.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_Switch.png",
       },
       {
          id: "Icon_JoyStick",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeyJoyStick.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_JoyStick.png",
       },
       {
          id: "Icon_SpecialReady",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeySpecialV2.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_JoyStick.png",
       },
       {
          id: "Icon_UltimateReady",
-         icon: "https://static.mana.wiki/zzz/IconRoleSkillKeyUltimateV2.png",
+         icon: "https://static.mana.wiki/zzz/Desc_Icon_UltimateReady.png",
       },
    ];
 
@@ -131,7 +132,7 @@ export function Skills({ data: char }: { data: AgentType }) {
                      <>
                         <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-1  mt-2 p-1 flex items-center">
                            <div className="text-lg mx-2">
-                              Lv{skillLevel + 1}
+                              Lv.{skillLevel + 1}
                            </div>
                            <input
                               aria-label="Level Slider"

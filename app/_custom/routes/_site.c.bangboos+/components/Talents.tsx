@@ -22,7 +22,7 @@ export function Talents({ data: char }: { data: AgentType }) {
          {talents?.length > 0 ? (
             <>
                <div className="bg-zinc-50 dark:bg-dark350 shadow-sm shadow-1 border border-color-sub rounded-lg px-3 py-1  mt-2 p-1 flex items-center">
-                  <div className="text-lg mx-2">Lv{talentLevel + 1}</div>
+                  <div className="text-lg mx-2">Lv.{talentLevel + 1}</div>
                   <input
                      aria-label="Level Slider"
                      className="h-1 w-full

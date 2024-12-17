@@ -133,7 +133,7 @@ export function Main({ data: char }: { data: BangbooType }) {
                <div className="flex items-center gap-3">
                   {/* Level Label */}
                   <div className="inline-flex justify-between align-middle">
-                     Lvl
+                     Lv.
                   </div>
                   {/* Level Input Box */}
                   <Input

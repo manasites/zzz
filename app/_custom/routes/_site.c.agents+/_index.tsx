@@ -71,45 +71,45 @@ const CharacterList = ({ chars }: any) => {
       {
          id: "3",
          //name: "A",
-         icon: "https://static.mana.wiki/zzz/RarityIcon_IconRoleABig.png",
+         icon: "https://static.mana.wiki/zzz/Rarity_3.png",
       },
       {
          id: "4",
          //name: "S",
-         icon: "https://static.mana.wiki/zzz/RarityIcon_IconRoleSBig.png",
+         icon: "https://static.mana.wiki/zzz/Rarity_4.png",
       },
    ] as FilterOptionType[];
    const elementries = chars.map((c: any) => c.damage_element).flat();
    const elements = [
       {
-         id: "200",
+         id: "2000",
          name: "Physical",
-         icon: elementries.find((c: any) => c.id == "200")?.icon?.url,
+         icon: elementries.find((c: any) => c.id == "2000")?.icon?.url,
       },
       {
-         id: "201",
+         id: "2010",
          name: "Fire",
-         icon: elementries.find((c: any) => c.id == "201")?.icon?.url,
+         icon: elementries.find((c: any) => c.id == "2010")?.icon?.url,
       },
       {
-         id: "202",
+         id: "2020",
          name: "Ice",
-         icon: elementries.find((c: any) => c.id == "202")?.icon?.url,
+         icon: elementries.find((c: any) => c.id == "2020")?.icon?.url,
       },
       {
-         id: "203",
+         id: "2021",
+         name: "Frost",
+         icon: elementries.find((c: any) => c.id == "2021")?.icon?.url,
+      },
+      {
+         id: "2030",
          name: "Electric",
-         icon: elementries.find((c: any) => c.id == "203")?.icon?.url,
+         icon: elementries.find((c: any) => c.id == "2030")?.icon?.url,
       },
-      // {
-      //   id: "204",
-      //   name: "Wind",
-      //   icon: elementries.find((c: any) => c.id == "204")?.icon?.url,
-      // },
       {
-         id: "205",
+         id: "2050",
          name: "Ether",
-         icon: elementries.find((c: any) => c.id == "205")?.icon?.url,
+         icon: elementries.find((c: any) => c.id == "2050")?.icon?.url,
       },
    ] as FilterOptionType[];
    const typeentries = chars.map((c: any) => c.damage_type).flat();
