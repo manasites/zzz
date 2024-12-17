@@ -118,6 +118,21 @@ export const WEngines: CollectionConfig = {
          ],
       },
       {
+         name: "modifications",
+         type: "array",
+         fields: [
+            {
+               name: "material",
+               type: "relationship",
+               relationTo: "materials",
+            },
+            {
+               name: "amount",
+               type: "number",
+            },
+         ],
+      },
+      {
          name: "checksum",
          type: "text",
          required: true,
