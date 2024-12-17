@@ -1,4 +1,4 @@
-import type { DiskDriveSet as DiskDriveSetType } from "payload/generated-custom-types";
+import type { DriveDiscSet as DriveDiscSetType } from "payload/generated-custom-types";
 import { Disclosure } from "@headlessui/react";
 import { H2, H3 } from "~/components/Headers";
 import { Input } from "~/components/Input";
@@ -7,7 +7,7 @@ import { useState } from "react";
 import { formatValue } from "~/_custom/utils/valueFormat";
 
 export function Stats({ data }: any) {
-   const char = data.DiskDriveSet;
+   const char = data.DriveDiscSet;
    const json = data.DataJson.json;
    const rarities = char.rarity_possible;
 

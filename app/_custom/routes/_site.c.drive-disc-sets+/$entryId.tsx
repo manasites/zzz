@@ -7,12 +7,12 @@ import { gql } from "graphql-request";
 import { Effects } from "./components/Effects";
 import { Main } from "./components/Main";
 import { Stats } from "./components/Stats";
-import type { DiskDriveSet as DiskDriveSetType } from "~/db/payload-custom-types";
+import type { DriveDiscSet as DriveDiscSetType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
 import { fetchEntry } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/fetchEntry.server";
 
-import { DiskDriveSets } from "../../collections/drive-disk-sets";
+import { DriveDiscSets } from "../../collections/drive-disc-sets";
 
 // Custom Site / Collection Config Imports
 
@@ -49,7 +49,7 @@ const SECTIONS = {
 export default function EntryPage() {
    const { entry } = useLoaderData<typeof loader>();
    const data = entry?.data;
-   const char = data?.DiskDriveSet as DiskDriveSetType;
+   const char = data?.DriveDiscSet as DriveDiscSetType;
 
    return (
       <>
@@ -64,8 +64,8 @@ export default function EntryPage() {
 }
 
 const QUERY = gql`
-   query DiskDriveSet($entryId: String!) {
-      DiskDriveSet(id: $entryId) {
+   query DriveDiscSet($entryId: String!) {
+      DriveDiscSet(id: $entryId) {
          id
          slug
          name

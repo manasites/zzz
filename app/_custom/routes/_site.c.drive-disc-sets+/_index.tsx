@@ -29,12 +29,12 @@ export async function loader({
    });
 
    //@ts-ignore
-   return json({ diskdrivesets: list?.listData?.docs });
+   return json({ drivediscsets: list?.listData?.docs });
 }
 
 export default function CharactersList() {
-   const { diskdrivesets } = useLoaderData<typeof loader>();
-   return <CharacterList chars={diskdrivesets} />;
+   const { drivediscsets } = useLoaderData<typeof loader>();
+   return <CharacterList chars={drivediscsets} />;
 }
 
 type FilterTypes = {
@@ -271,7 +271,7 @@ const CharacterList = ({ chars }: any) => {
                   <Link
                      key={cid}
                      prefetch="intent"
-                     to={`/c/disk-drive-sets/${cid}`}
+                     to={`/c/drive-disc-sets/${cid}`}
                      className="bg-2-sub border-color-sub shadow-1 flex items-baseline justify-center rounded-md border p-2 shadow-sm"
                   >
                      <div className="w-full">
@@ -365,7 +365,7 @@ const CharacterList = ({ chars }: any) => {
 
 const CHARACTERS = gql`
    query {
-      listData: DiskDriveSets(limit: 0, sort: "name") {
+      listData: DriveDiscSets(limit: 0, sort: "name") {
          docs {
             id
             slug

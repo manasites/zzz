@@ -1,9 +1,11 @@
-import type { DiskDriveSet as DiskDriveSetType } from "payload/generated-custom-types";
+import type { DriveDiscSet as DriveDiscSetType } from "payload/generated-custom-types";
 import { Disclosure } from "@headlessui/react";
 import { Image } from "~/components/Image";
 import { useState } from "react";
 
-export function Main({ data: char }: { data: DiskDriveSetType }) {
+export function Main({ data: char }: { data: DriveDiscSetType }) {
+   console.log(char);
+
    const [level, setLevel] = useState(0);
 
    const mainImage = char?.icon?.url;
@@ -36,7 +38,7 @@ export function Main({ data: char }: { data: DiskDriveSetType }) {
             </section>
             <section>
                <div
-                  className="border border-color-sub divide-y divide-color-sub shadow-sm shadow-1 rounded-lg h-full 
+                  className="border border-color-sub divide-y divide-color-sub shadow-sm shadow-1 rounded-lg h-full
           [&>*:nth-of-type(odd)]:bg-zinc-50 dark:[&>*:nth-of-type(odd)]:bg-dark350 overflow-hidden"
                >
                   {mainStatDisplay?.map((row) => (
