@@ -196,6 +196,21 @@ export const Agents: CollectionConfig = {
          ],
       },
       {
+         name: "mindscape_art_1",
+         type: "upload",
+         relationTo: "images",
+      },
+      {
+         name: "mindscape_art_2",
+         type: "upload",
+         relationTo: "images",
+      },
+      {
+         name: "mindscape_art_3",
+         type: "upload",
+         relationTo: "images",
+      },
+      {
          name: "profile_info",
          type: "text",
       },
@@ -211,40 +226,6 @@ export const Agents: CollectionConfig = {
          name: "bday",
          type: "text",
       },
-      //{
-      //   name: "quotes",
-      //   type: "array",
-      //   fields: [
-      //      {
-      //         name: "title",
-      //         type: "text",
-      //      },
-      //      {
-      //         name: "content",
-      //         type: "text",
-      //      },
-      //      {
-      //         name: "vo_zh",
-      //         type: "upload",
-      //         relationTo: "images",
-      //      },
-      //      {
-      //         name: "vo_ja",
-      //         type: "upload",
-      //         relationTo: "images",
-      //      },
-      //      {
-      //         name: "vo_en",
-      //         type: "upload",
-      //         relationTo: "images",
-      //      },
-      //      {
-      //         name: "vo_ko",
-      //         type: "upload",
-      //         relationTo: "images",
-      //      },
-      //   ],
-      //},
       {
          name: "checksum",
          type: "text",
