@@ -122,13 +122,20 @@ export const WEngines: CollectionConfig = {
          type: "array",
          fields: [
             {
-               name: "material",
-               type: "relationship",
-               relationTo: "materials",
-            },
-            {
-               name: "amount",
-               type: "number",
+               name: "materials",
+               type: "array",
+               fields: [
+                  {
+                     name: "material",
+                     type: "relationship",
+                     relationTo: "materials",
+                     hasMany: false,
+                  },
+                  {
+                     name: "qty",
+                     type: "number",
+                  },
+               ],
             },
          ],
       },
