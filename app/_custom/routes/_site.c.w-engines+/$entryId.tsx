@@ -7,6 +7,7 @@ import { gql } from "graphql-request";
 import { ImageGallery } from "./components/ImageGallery";
 import { Main } from "./components/Main";
 import { Talents } from "./components/Talents";
+import { Modification } from "./components/Modification";
 import type { WEngine as WEngineType } from "~/db/payload-custom-types";
 import { Entry } from "~/routes/_site+/c_+/$collectionId_.$entryId/components/Entry";
 import { entryMeta } from "~/routes/_site+/c_+/$collectionId_.$entryId/utils/entryMeta";
@@ -45,6 +46,7 @@ export async function loader({
 const SECTIONS = {
    main: Main,
    talents: Talents,
+   modification: Modification,
    gallery: ImageGallery,
 };
 
@@ -58,6 +60,7 @@ export default function EntryPage() {
          <Entry>
             <Main data={loaderdata} />
             <Talents data={char} />
+            <Modification data={char} />
             <ImageGallery data={char} />
          </Entry>
       </>
@@ -114,6 +117,22 @@ const QUERY = gql`
          talent {
             level
             desc
+         }
+         modifications {
+            materials {
+               material {
+                  id
+                  slug
+                  name
+                  icon {
+                     url
+                  }
+                  rarity {
+                     id
+                  }
+               }
+               qty
+            }
          }
       }
       DataJsons {
