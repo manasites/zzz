@@ -132,6 +132,9 @@ const QUERY = gql`
                   icon {
                      url
                   }
+                  rarity {
+                     id
+                  }
                }
                qty
             }

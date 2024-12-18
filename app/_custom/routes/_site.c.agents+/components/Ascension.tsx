@@ -87,13 +87,14 @@ type ItemQtyFrameProps = {
 };
 const ItemQtyFrame = ({ mat }: { mat: ItemQtyFrameProps }) => {
    // Matqty holds material and quantity information
-   const cnt = parseInt(mat?.qty);
-   const display_qty =
-      cnt > 999999
+   const cnt = mat?.qty;
+   const display_qty = cnt
+      ? cnt > 999999
          ? Math.round(cnt / 1000000) + "M"
          : cnt > 999
          ? Math.round(cnt / 1000) + "k"
-         : cnt;
+         : cnt
+      : "";
 
    return (
       <div
@@ -116,7 +117,7 @@ const ItemQtyFrame = ({ mat }: { mat: ItemQtyFrameProps }) => {
             <div
                className={`relative w-12 align-middle text-xs text-white rounded-b-md `}
             >
-
+               {display_qty}
             </div>
          </a>
       </div>
