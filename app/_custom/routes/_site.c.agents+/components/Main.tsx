@@ -28,6 +28,11 @@ export function Main({ data: char }: { data: AgentType }) {
          icon: char?.damage_type?.[0]?.icon?.url,
       },
       {
+         label: "Specialty",
+         value: char?.character_specialty?.name,
+         icon: char?.character_specialty?.icon?.url,
+      },
+      {
          label: "Element",
          value: char?.damage_element?.[0]?.name,
          icon: char?.damage_element?.[0]?.icon?.url,

@@ -113,6 +113,13 @@ const QUERY = gql`
                url
             }
          }
+         character_specialty {
+            id
+            name
+            icon {
+               url
+            }
+         }
          damage_element {
             id
             name
