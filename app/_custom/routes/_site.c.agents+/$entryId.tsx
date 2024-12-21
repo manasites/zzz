@@ -268,6 +268,15 @@ const QUERY = gql`
                qty
             }
          }
+         mindscape_art_1 {
+            url
+         }
+         mindscape_art_2 {
+            url
+         }
+         mindscape_art_3 {
+            url
+         }
          profile_info
          profile_desc
          height

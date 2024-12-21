@@ -5,6 +5,18 @@ import { Image } from "~/components/Image";
 export function ImageGallery({ data: char }: { data: AgentType }) {
    const gallery_items = [
       {
+         name: "Mindscape #1",
+         url: char?.mindscape_art_1?.url,
+      },
+      {
+         name: "Mindscape #2",
+         url: char?.mindscape_art_2?.url,
+      },
+      {
+         name: "Mindscape #3",
+         url: char?.mindscape_art_3?.url,
+      },
+      {
          name: "Icon",
          url: char?.icon?.url,
       },
