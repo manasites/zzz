@@ -27,7 +27,7 @@ export function Core({ data: char }: { data: AgentType }) {
       },
       {
          name: "B",
-         icon: "https://static.mana.wiki/zzz/CoreSkill_b.png",
+         icon: "https://static.mana.wiki/zzz/CoreSkill_B.png",
       },
       {
          name: "C",
